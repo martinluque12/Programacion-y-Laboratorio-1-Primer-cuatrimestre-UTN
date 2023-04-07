@@ -18,12 +18,14 @@ mensaje += "Elige una opcion.\n1-Marca del auto. \n2-Modelo del auto (Año del a
 opcion_elegida = input(mensaje)
 
 while True:
+    
     if opcion_elegida == "1":
-        marca_auto = input("¿Que marca de auto es la que te gusta mas? \n>")
+        marca_auto = input("\nMarca del auto que desea adquirir. \n>")
         while marca == " " and type(marca) != type(str()):
             marca = input("Error! Elija una marca valida. \n>")
+
     elif opcion_elegida == "2":
-        modelo_auto = input("¿Que modelo es el auto que te gusta? (Año de fabricacion del auto) \n>")
-        while len(modelo_auto) > 4 :
-            pass
+        modelo_auto = input("\nModelo del auto. (Año de fabricación del auto) \n>")
+        while modelo_auto == " " and len(modelo_auto) < 4 and len(modelo_auto) > 4 :
+            modelo_auto = input("Error! Ingrese un modelo valido ")
 
