@@ -1,7 +1,7 @@
 '''
 1G MARTIN LUQUE 
 
-Ejercicio 09 Sin usar listas
+Ejercicio 01 Sin usar listas
 
 Una concesionaria de autos nos pide desarrollar un sistema para controlar el stock de autos
 que tienen disponible a la venta.
@@ -21,9 +21,9 @@ respuesta = "s"
 while respuesta == "s":
 
 
-    marca_auto = input("\nIngrese la marca del auto : > ")
+    marca_auto = input("\nIngrese la marca del auto : > ").capitalize()
     while not marca_auto or marca_auto.isnumeric(): 
-        marca_auto = input("Erro! dato no valido. vuelva a ingresarlo. > ")
+        marca_auto = input("Erro! dato no valido. vuelva a ingresarlo. > ").capitalize()
 
     while True:
         try:
@@ -43,12 +43,14 @@ while respuesta == "s":
         except ValueError:
             print("Error! Ingrese un dato numérico.")
 
-    información_autos += "\n\nMarca del auto: {0} | Modelo del auto: {1} | Precio del auto: ${2:,.0f}".format(marca_auto, 
-                                                                                                          modelo_auto, 
-                                                                                                          precio_auto)
+    información_autos += "\nMarca del auto: {0} | Modelo del auto: {1} | Precio del auto: ${2:,.0f}".format(marca_auto, 
+                                                                                                            modelo_auto, 
+                                                                                                            precio_auto)
 
     respuesta = input('¿Quiere seguir ingresando? \nPresione "S" para si o "N" para no. > ').lower()
     while respuesta != "s" and respuesta != "n":
         respuesta = input('Error! Ingrese una opción valida "S" o "N" > ').lower()
 
+print("\n********************************************************************************")
 print(información_autos)
+print("\n********************************************************************************")

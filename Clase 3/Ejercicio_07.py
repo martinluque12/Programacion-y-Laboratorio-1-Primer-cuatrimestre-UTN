@@ -16,7 +16,7 @@ for i in range(5):
             numeros_ingresado = int(input("\nIngrese un numero entero. \n>"))
             break
         except ValueError:
-            print("Error! Ingrese dato numerico valido.\n")
+            print("Error! Ingrese dato numérico valido.\n")
 
     lista_numeros_ingresado.append(numeros_ingresado)
 

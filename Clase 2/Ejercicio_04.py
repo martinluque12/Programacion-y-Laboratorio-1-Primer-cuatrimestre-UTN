@@ -36,19 +36,19 @@ for compras in range(5):
         try:
             peso_kg = float(input("\nPeso en kg (entre 10 y 100 kilos) \n>"))
             while peso_kg < 10 or peso_kg > 100:
-                peso_kg = float(input("Error! Ingrese un valor numerico entre 10 y 100. \n>"))
+                peso_kg = float(input("Error! Ingrese un valor numérico entre 10 y 100. \n>"))
             break
         except ValueError:
-            print("Error! Ingrese un valor numerico entre 10 y 100.")
+            print("Error! Ingrese un valor numérico entre 10 y 100.")
     
     while True:
         try:
             precio_kg = float(input("Ingrese el precio por kg \n>"))
             while precio_kg < 0:
-                precio_kg = float(input("Error! Ingrese un valor numerico mayor a 0.\n>"))
+                precio_kg = float(input("Error! Ingrese un valor numérico mayor a 0.\n>"))
             break
         except ValueError:
-            print("Error! Ingrese un valor numerico mayor a 0.")
+            print("Error! Ingrese un valor numérico mayor a 0.")
 
     tipo_alimento = input('Tipo de alimento que quiere cargar: Vegetal, Animal o Mezcla\n>').lower()
     while tipo_alimento != "vegetal" and tipo_alimento != "animal" and tipo_alimento != "mezcla":
@@ -80,12 +80,12 @@ print("El precio BRUTO es ${}".format(importe_bruto))
 
 if kg_totales > 100 and kg_totales < 300:
     precio_con_descuento = importe_bruto - (importe_bruto * 15 / 100)
-    mensaje = "Por haber comrpado mas de 100kg tiene un descuento del 15% el precio final es de ${}"
+    mensaje = "Por haber comprado mas de 100kg tiene un descuento del 15% el precio final es de ${}"
     print("\n==================================================================================================\n")
     print(mensaje.format(precio_con_descuento))
 elif kg_totales > 300:
     precio_con_descuento = importe_bruto - (importe_bruto * 25 / 100)
-    mensaje = "Por haber comrpado mas de 100kg tiene un descuento del 25% el precio final es de ${}"
+    mensaje = "Por haber comprado mas de 100kg tiene un descuento del 25% el precio final es de ${}"
     print("\n==================================================================================================\n")
     print(mensaje.format(precio_con_descuento))
 

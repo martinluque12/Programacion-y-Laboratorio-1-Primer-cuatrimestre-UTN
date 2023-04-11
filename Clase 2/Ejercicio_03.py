@@ -82,7 +82,7 @@ while respuesta == "s":
 
     respuesta = input('\n¿Desea continuar? "S" para si o "N" para no. \n\n>').lower()
     while respuesta != "s" and respuesta != "n":
-        respuesta = input('\nError! Ingrese una opcion valida. "s" para Si o "n" para No. \n\n>').lower()
+        respuesta = input('\nError! Ingrese una opción valida. "s" para Si o "n" para No. \n\n>').lower()
 
 
 votos_totales = contador_votos_nacho + contador_votos_marcos + contador_votos_julieta

@@ -18,7 +18,8 @@ for i in range(5):
     
     lista_numeros_ingresado.append(numeros_ingresado)
 
-print("Estos son los numeros pares ingresados:")
-for numeros in lista_numeros_ingresado:
-    if numeros % 2 == 0:
-        print("*",numeros)
+print("\nEstos son los números pares ingresados:")
+
+for numero in lista_numeros_ingresado:
+    if numero % 2 == 0:
+        print("*",numero)

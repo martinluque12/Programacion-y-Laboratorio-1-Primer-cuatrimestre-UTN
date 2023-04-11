@@ -24,7 +24,7 @@ for i in range(5):
 
     lista_numeros_ingresado.append(numeros_ingresado)
 
-print("Estos son los numeros que se ingresaron:\n")
+print("\nEstos son los numeros que se ingresaron:\n")
 
 acumulador_numeros_ingresados = 0
 suma_positivos = 0

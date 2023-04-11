@@ -3,7 +3,7 @@
 
 Ejercicio 02
 
-Debemos hacer un programa para que el usuario recuerde las reglas de estilo depython, entonces debemos pedirle al usuario
+Debemos hacer un programa para que el usuario recuerde las reglas de estilo de python, entonces debemos pedirle al usuario
 un número entre el 1 y el 8, al ingresar el número debemos mostrarle que regla de estilo representa 
 y su descripción (Sacar la información de las diapositivas de las reglas de estilo).
 En caso de que ingrese un numero fuera del rango deberá mostrarle al usuario “Error, regla de estilo inexistente”
@@ -49,7 +49,7 @@ while respuesta == "s":
             print(mensaje)
         case "5":
             mensaje = "\n*-----------------------------------------------------------------------------------------*\n"
-            mensaje += "\nTamaño maximo de linea\n"
+            mensaje += "\nTamaño máximo de linea\n"
             mensaje += "\nSe recomienda limitar el tamaño de cada línea a 79 caracteres, para evitar tener que hacer "
             mensaje += "scroll a la derecha.\n"
             mensaje += "\n*-----------------------------------------------------------------------------------------*\n"
@@ -73,18 +73,18 @@ while respuesta == "s":
         case "8":
             mensaje = "\n*-----------------------------------------------------------------------------------------*\n"
             mensaje += "\nNombres\n"
-            mensaje += "\n* Funciones: Uso de snake_case, letras en minúscula separadas por guión bajo: mi_funcion.\n"
+            mensaje += "\n* Funciones: Uso de snake_case, letras en minúscula separadas por guion bajo: mi_funcion.\n"
             mensaje += "* Variables: Al igual que las funciones: variable, mi_variable.\n"
             mensaje += "* Clases: Uso de CamelCase, usando mayúscula y sin barra baja: MiClase, ClaseDePrueba.\n"
-            mensaje += "* Métodos: Al igual que las funciones, usar snake_case: metodo, mi_metodo.\n"
-            mensaje += "* Constantes: Nombrarlas usando mayúsculas y separadas por guión bajas: UNA_CONSTANTE\n"
+            mensaje += "* Métodos: Al igual que las funciones, usar snake_case: método, mi_metodo.\n"
+            mensaje += "* Constantes: Nombrarlas usando mayúsculas y separadas por guion bajas: UNA_CONSTANTE\n"
             mensaje += "* Módulos: Igual que las funciones: modulo.py, mi_modulo.py.\n"
             mensaje += "\n*-----------------------------------------------------------------------------------------*\n"
             print(mensaje)
         case _:
-            print("Error! Ingrese una opcion valida del 1 al 8.")
+            print("Error! Ingrese una opción valida del 1 al 8.")
             continue
 
     respuesta = input('¿Quiere seguir leyendo las reglas de estilos? (Presione "s" para si o "n" para no)\n>').lower()
     while respuesta != "s" and respuesta != "n":
-        respuesta = input('Error! Ingrese una opcion valida. (Presione "s" para si o "n" para no)\n>').lower()
+        respuesta = input('Error! Ingrese una opción valida. (Presione "s" para si o "n" para no)\n>').lower()

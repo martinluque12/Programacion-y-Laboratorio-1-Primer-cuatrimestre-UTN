@@ -28,23 +28,23 @@ acumulador_precio_total = 0
 respuesta = "s"
 
 while respuesta == "s":
-    tipo_producto = input('\nIngrese el producto que desea cargar: "barbijo", "jabon" o "alcohol". \n>').lower()
+    tipo_producto = input('\nIngrese el producto que desea cargar: "barbijo", "jabón" o "alcohol". \n>').lower()
     while tipo_producto != "barbijo" and tipo_producto != "jabon" and tipo_producto != "alcohol":
-        tipo_producto = input('Error! Ingrese un producto valido: "barbijo", "jabon" o "alcohol". \n>').lower()
+        tipo_producto = input('Error! Ingrese un producto valido: "barbijo", "jabón" o "alcohol". \n>').lower()
 
     while True:
         try:
             precio_producto = int(input("Precio del producto: \n>"))
             break
         except ValueError:
-            print("Error! Ingrese un valor numerico.")
+            print("Error! Ingrese un valor numérico.")
 
     while True:
         try:
             unidades_producto = int(input("Cantidad de unidades del producto: \n>"))
             break
         except ValueError:
-            print("Error! Ingrese un valor numerico.")
+            print("Error! Ingrese un valor numérico.")
 
     marca_producto = input("Marca del producto: \n>")
 
@@ -60,9 +60,9 @@ while respuesta == "s":
         unidades_alcohol += unidades_producto
         acumulador_precio_alcohol += precio_producto
 
-    respuesta = input('¿Quiere seguir ingresando productos? Precione "s" para continuar o "n" para salir.\n>').lower()
+    respuesta = input('¿Quiere seguir ingresando productos? Presione "s" para continuar o "n" para salir.\n>').lower()
     while respuesta != "s" and respuesta != "n":
-        respuesta = input('Error! ingrese una opcion valida ("s" para continuar o "n" para salir).\n>').lower()
+        respuesta = input('Error! ingrese una opción valida ("s" para continuar o "n" para salir).\n>').lower()
 
 
 unidades_totales = unidades_barbijo + unidades_jabon + unidades_alcohol
