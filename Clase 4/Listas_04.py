@@ -17,39 +17,84 @@ Se deberá Informar:
 * Cantidad y porcentaje de abstenciones.
 * Generar una lista de senadores por cada tipo de voto y mostrarlas por pantalla.
 '''
-
-lista_senadores = []
-lista_votos_afirmativos = []
-lista_votos_negativos = []
-lista_votos_abtencion = []
-
+separador = 80*"="
+contador_senadores = 0
 contador_senadores_presentes = 0
 
-respuesta = "s"
+lista_votantes_afirmativo = []
+lista_votantes_negativo = []
+lista_votantes_abstencion = []
+lista_senadores_ausentes = []
 
-while respuesta == "s":
+respuesta = "si"
+
+while respuesta == "si":
 
     senadores = input("\nNombre del/la senador/a: > ").strip().capitalize()
     while not senadores or not senadores.isalpha():
-        senadores = input("Erro! Vuelva a ingresar el nombre del senador: > ").strip().capitalize()
+        senadores = input("Erro! Vuelva a ingresar el nombre > ").strip().capitalize()
 
-    lista_senadores.append(senadores)
-
-    presente = input('\n¿El senador se encuentra presente? Ingrese "s" para si o "n" para no. > ').strip().lower()
-    while not presente or not presente.isalpha() or presente != "s" and presente != "n":
-        presente = input('Error! Ingrese una opción valida: "s" para si o "n" para no. > ').strip().lower()
-
-    if presente == "s":
-        votos = input('\nVoto del/la senador/a: "Afirmativo", "Negativo" o "Abstención" > ').strip().capitalize()
-        while not votos or not votos.isalpha() and votos != "negativo" and votos != "afirmativo" and votos != "abstencion":
-            votos = input("Error! Ingrese una opción valida: > ").strip().capitalize()
+    contador_senadores += 1
+    
+    presente = input("\n¿El senador se encuentra presente? Responda con si o con no. > ").lower()
+    while presente != "si" and presente != "no":
+        presente = input("Error! Elija una opción valida. > ").lower()
+    
+    if presente == "si":
         contador_senadores_presentes += 1
+        
+        voto = input("\n¿Cual es su voto? Responda con Afirmativo, Negativo o Abstención. > ").lower()
+        while voto != "afirmativo" and voto != "negativo" and voto != "abstencion":
+            voto = input("Error! ingrese una opción valida: Afirmativo, Negativo o Abstención. > ").lower()
+            
+        if voto == "afirmativo":
+            lista_votantes_afirmativo.append(senadores)
+        elif voto == "negativo":
+            lista_votantes_negativo.append(senadores)
+        else:
+            lista_votantes_abstencion.append(senadores)
     else:
-        votos = "abstencion"
+        lista_senadores_ausentes.append(senadores)
+        lista_votantes_abstencion.append(senadores)
 
-    respuesta = input('\n¿Quiere seguir ingresando senadores/as? Ingrese "s" para si o "n" para no. > ').lower()
-    while respuesta != "s" and respuesta != "n":
-        respuesta = input('Error! Ingrese una opción valida: "s" para si o "n" para no. > ').lower()
+    respuesta = input("\n¿Quiere seguir ingresando senadores? Ingrese si o no. > ").lower()
+    while respuesta != "si" and respuesta != "no":
+        respuesta = input("Error! Ingrese una opción valida si o no. > ").lower()
+        
+votos_afirmativos = len(lista_votantes_afirmativo)
+votos_negativos = len(lista_votantes_negativo)  
+votos_abstencion = len(lista_votantes_abstencion)
+votos_totales = votos_afirmativos + votos_negativos + votos_abstencion 
 
-print("En total hay {0} senadores de los cuales {1} están presentes.".format(len(lista_senadores), 
-                                                                             contador_senadores_presentes))
+porcentaje_votos_afirmativos = (votos_afirmativos / votos_totales) * 100
+porcentaje_votos_negativos = (votos_negativos / votos_totales) * 100
+porcentaje_votos_abstencion = (votos_abstencion / votos_totales) * 100
+
+print("\n"+separador)
+print("\nHay {0} senadores en total, de los cuales {1} están presentes.".format(contador_senadores,
+                                                                            contador_senadores_presentes))
+
+mensaje = "\nVotos afirmativos: {0} con un porcentaje del {1:.2f}%"
+mensaje += "\nVotos negativos: {2} con un porcentaje del {3:.2f}%"
+mensaje += "\nHubo {4} senadores que se abstuvieron de votar, con un porcentaje del {5:.2f}%"
+print(mensaje.format(votos_afirmativos, 
+                     porcentaje_votos_afirmativos, 
+                     votos_negativos, 
+                     porcentaje_votos_negativos, 
+                     votos_abstencion, 
+                     porcentaje_votos_abstencion))
+
+
+print("\nSenadores que votaron afirmativamente:")
+print("\n".join(lista_votantes_afirmativo))
+print("\n" + separador)
+print("Senadores que votaron negativamente:")
+print("\n".join(lista_votantes_negativo))
+print("\n" + separador)
+print("Senadores que se abstuvieron de votar:")
+print("\n".join(lista_votantes_abstencion))
+print("\n" + separador)
+print("Senadores que se encontraban ausentes:")
+print("\n".join(lista_senadores_ausentes))
+print("\n" + separador)
+
