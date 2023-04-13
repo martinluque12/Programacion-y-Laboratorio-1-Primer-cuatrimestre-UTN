@@ -13,10 +13,12 @@ edad (validar 1 a 15) y peso (entre 25 y 40 kilos) determinar:
 3. Si la facturación en bruto supera los 5000$, hay que agregarle un 21% de impuesto por ingresos brutos e informarlo.
 4. Informar el nombre y el peso del perro con más peso.
 '''
-separador = 80*"*"
+separador = 130 * "*"
 
 lista_pacientes = []
 lista_pacientes_gorditos = []
+
+precio_bruto = 0
 
 respuesta = "si"
 
@@ -57,6 +59,10 @@ while respuesta == "si":
         except ValueError:
             print("Error! Ingrese un dato numérico.")
 
+    precio_bruto += precio_consulta
+
+    lista_pacientes.append([nombre_perro, raza_perro, edad_perro, peso_kg_perro, precio_consulta])
+
     if peso_kg_perro > 30:
         lista_pacientes_gorditos.append([nombre_perro, raza_perro, edad_perro, peso_kg_perro, precio_consulta])
 
@@ -65,7 +71,11 @@ while respuesta == "si":
         respuesta = input("Error! Ingrese una opción valida. > ").lower()
 
 
-    lista_pacientes.append([nombre_perro, raza_perro, edad_perro, peso_kg_perro, precio_consulta])
+if precio_bruto > 5000:
+    precio_con_iva = precio_bruto + (precio_bruto * 21) / 100
+    print("\n" + separador)
+    print("\nEl precio final de la consulta supera los $5000 por ese motivo "
+          "se le agrega 21% de iva, el precio con iva incluido es: ${}".format(precio_con_iva))
 
 lista_pacientes.sort(key=lambda p: p[2])
 lista_pacientes_gorditos.sort(key=lambda p: p[0])
@@ -81,11 +91,17 @@ for perritos in lista_pacientes:
                                                                                                         perritos[4]))    
     
 print("\n" + separador)
-print("\nListado de perritos que pesan mas de 30kg ordenados por nombre:")
 
-for perritos in lista_pacientes_gorditos:
-    print("\nNombre: {0} | Raza: {1} | Edad: {2} años | Peso: {3}kg | Precio de la consulta: ${4}".format(perritos[0],
-                                                                                                        perritos[1],
-                                                                                                        perritos[2],
-                                                                                                        perritos[3],
-                                                                                                        perritos[4]))    
+if len(lista_pacientes_gorditos) > 0:
+    print("\nListado de perritos que pesan mas de 30kg ordenados por nombre:")
+    for perritos in lista_pacientes_gorditos:
+        print("\nNombre: {0} | Raza: {1} | Edad: {2} años | Peso: {3}kg | Precio de la consulta: ${4}".format(perritos[0],
+                                                                                                            perritos[1],
+                                                                                                            perritos[2],
+                                                                                                            perritos[3],
+                                                                                                            perritos[4]))    
+
+    print("\n" + separador)
+    print("\n{0} es el nombre del perro con mas peso".format(lista_pacientes_gorditos[0][0]))
+
+    print("\n" + separador)
