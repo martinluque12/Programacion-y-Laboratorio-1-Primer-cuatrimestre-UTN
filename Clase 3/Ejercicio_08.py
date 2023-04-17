@@ -45,7 +45,7 @@ if suma_positivos > 0:
 else:
     print("\nNo se ingresaron numeros positivos.")
 
-if producto_negativos > 1:
+if producto_negativos != 1:
     print("\nEl producto de los numeros negativos ingresados es: {}".format(producto_negativos))
 else:
     print("\nNo se ingresaron numeros negativos.")

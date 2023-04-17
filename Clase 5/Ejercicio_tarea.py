@@ -11,7 +11,7 @@ Vaciar lista
 '''
 import os
 
-separador = 143 * "*"
+separador = 50 * "*"
 
 lista_numeros = []
 

@@ -36,6 +36,6 @@ for numero in lista_numeros:
         id_numero = id(numero)
 
 print("\nEl numero con mas ocurrencias es: {0} aparece {1} y su ID es: {2}".format(numero_mas_ocurrencia, 
-                                                                                 ocurrencias_maxima, 
-                                                                                 id_numero))
+                                                                                   ocurrencias_maxima, 
+                                                                                   id_numero))
 
