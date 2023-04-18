@@ -11,7 +11,7 @@ Con esos datos se necesita saber:
 • Nombre del jugador más joven.
 • Jugador que más bajas tuvo.
 • Jugador con menos muertes
-• El promedio de bajas del equipo
+• El promedio de bajas del equipo 
 • La cantidad de jugadores que tienen entre 20 y 30 años cuyas bajas están entre 10 y 20
 • El nombre y edad del jugador que más muertes tuvo (MVP)
 Nota: los datos tienen que ingresar en 1 solo string separado por espacios, y ser almacenados en una lista,
