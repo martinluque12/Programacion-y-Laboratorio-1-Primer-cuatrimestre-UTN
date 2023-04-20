@@ -19,6 +19,4 @@ Nota: No se podrá entrar a las opciones b, c y d si no se cargaron los datos en
 '''
 from funciones import *
 
-limpiar_pantalla()
-
 menu_temperatura()

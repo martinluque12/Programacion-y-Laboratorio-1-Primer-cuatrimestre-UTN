@@ -6,9 +6,7 @@ DIAS_SEMANA = 3
 def limpiar_pantalla()-> None:
     '''
     Limpia la pantalla de la terminal después que el usuario haya ingresado una opción
-
     No recibe nada.
-
     No retorna nada.
     '''
 
@@ -24,15 +22,15 @@ def cargar_temperaturas()->list:
 
     for i in range(DIAS_SEMANA):
 
-        dia = input("\nIngrese el dia (lun, mar, mier, juev, vier, sab o dom) > ").lower()
+        dia = input("\nIngrese el dia \n(lun, mar, mier, juev, vier, sab o dom) > ").lower()
         while(dia != "lun" and dia != "mar" and dia != "mier" and dia != "juev" and dia != "vier" and
               dia != "sab" and dia != "dom"):
             dia = input("Error! Ingrese un dia valido. > ").lower()
 
-        temperatura_max = pedir_validar_temperatura("\nIngrese la temperatura maxima de ese dia. > ")
-        temperatura_min = pedir_validar_temperatura("\nIngrese la temperatura minima de ese dia. > ")
+        temperatura = pedir_validar_temperatura("\nIngrese la temperatura maxima de ese dia. > ")
+        
 
-        lista_temperaturas.append({"dia":dia, "temp_maxima": temperatura_max, "temp_minima": temperatura_min})
+        lista_temperaturas.append({"dia":dia, "temperatura": temperatura})
 
     return lista_temperaturas
 
@@ -50,20 +48,15 @@ def pedir_validar_temperatura(mensaje):
 
     return temperatura
 
-def calcular_promedio_temperaturas(lista:list, tipo:str)->float:
+def calcular_promedio_temperaturas(lista:list)->float:
     '''
     '''
-    temperaturas_maximas = 0
-    temperaturas_minimas = 0
+    temperaturas_totales = 0
 
     if type(lista) == type(list()) and len(lista) > 0:
         for temperatura in lista:
-            if tipo == "max":
-                temperaturas_maximas += temperatura["temp_maxima"]
-                promedio = temperaturas_maximas / DIAS_SEMANA
-            elif tipo == "min":
-                temperaturas_minimas += temperatura["temp_minima"]
-                promedio = temperaturas_maximas / DIAS_SEMANA
+            temperaturas_totales += temperatura["temperatura"]
+            promedio = temperaturas_totales / DIAS_SEMANA
 
     return promedio
 
@@ -74,11 +67,24 @@ def calcular_temperatura_maxima(lista:list)->dict:
         temperatura_maxima = lista[0]
 
         for temperatura in lista:
-            if temperatura["temp_maxima"] > temperatura_maxima["temp_maxima"]:
+            if temperatura["temperatura"] > temperatura_maxima["temperatura"]:
                 temperatura_maxima = temperatura
 
         return temperatura_maxima
     
+def mostrar_datos(dato: str,lista: list)->None:
+    '''
+    '''
+    if dato == "lista":
+        print("\nDías        Temperaturas")
+        for temp in lista:
+            print("{0}        {1}°".format(temp["dia"], temp["temperatura"]))
+    elif dato == "temp_max":
+        print("La temperatura maxima ingresada es: {0}° y fue el dia {}".format(calcular_temperatura_maxima(lista)))
+    elif dato == "promedio":
+        print("El promedio de temperatura es: {:.2f}°".format(calcular_promedio_temperaturas(lista)))
+    
+
 def menu_temperatura()->None:
 
     mensaje = "\n\n         Bienvenido a la app de temperaturas\n"
@@ -86,26 +92,46 @@ def menu_temperatura()->None:
     mensaje += "\nC- Maxima temperatura ingresada con su dia.\nD- Promedio de temperaturas.\nE- Salir\n\n> "
 
     opcion = input(mensaje).lower()
+    
+    flag_temperaturas = False
 
     while True:
-
         limpiar_pantalla()
-
         opcion = input(mensaje).lower()
-
+        
         match opcion:
 
             case "a":
-                cargar_temperaturas()
+                if flag_temperaturas:
+                    print("\nNo puede cargar 2 veces la lista")
+                elif not flag_temperaturas:
+                    lista_temp = cargar_temperaturas()
+                    flag_temperaturas = True
             case "b":
-                pass
+                if not flag_temperaturas:
+                    print("\nPrimero debe cargar las temperaturas.")
+                else:
+                    mostrar_datos("lista", lista_temp)
             case "c":
-                pass
+                if not flag_temperaturas:
+                    print("\nPrimero debe cargar las temperaturas.")
+                else:
+                    mostrar_datos("temp_max", lista_temp)
             case "d":
-                pass
+                if not flag_temperaturas:
+                    print("\nPrimero debe cargar las temperaturas.")
+                else:
+                    mostrar_datos("promedio", lista_temp)
             case "e":
-                break
+                salir = input("\nConfirmar salida: si/no > ").lower()
+                if salir == "si":
+                    break
+                elif salir == "no":
+                    continue
+                else:
+                    print("Error!")
             case _:
                 print("Error! Ingrese una opción valida.")
                 
         input("\nPresione Enter para continuar...")
+
