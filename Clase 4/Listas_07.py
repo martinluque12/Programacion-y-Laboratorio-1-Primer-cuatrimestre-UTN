@@ -20,17 +20,17 @@ investigar que función les permite lograrlo y como hacer una lista de listas.
 
 PARTIDAS = 1
 JUGADORES = 3
-separador = 60 * "="
+SEPARADOR = 60 * "="
 
 lista_estadisticas = []
 
-for partida in range(1,PARTIDAS+1):
+for p in range(1,PARTIDAS+1):
 
-    for jugador in range(JUGADORES):
+    for j in range(JUGADORES):
         while True:
-            datos_partida = []
+            #datos_partida = []
 
-            datos_ingresados = input(f"\n                Partida N°{partida}\n\n"
+            datos_ingresados = input(f"\n                Partida N°{p}\n\n"
                                      "*Ingrese los datos separados por un espacio*\n\n"
                                      "Nombre del jugador\nEdad del jugador\nBajas confirmadas" 
                                      "(cantidad de veces que murió)\nMuertes confirmadas" 
@@ -77,7 +77,7 @@ for elementos in lista_estadisticas:
 
 promedio_bajas = bajas_totales / JUGADORES
 
-print("\n"+separador+f"\nJugador mas joven: {jugador_mas_joven[0]} | Edad: {jugador_mas_joven[1]}"
-      "\n"+separador+f"\nJugador con mas bajas: {jugador_mas_bajas[0]} | Bajas: {jugador_mas_bajas[2]}"
-      "\n"+separador+f"\nJugador con menos muertes: {jugador_menos_bajas[0]} | Muertes: {jugador_menos_bajas[3]}"
-      "\n"+separador+f"\nPromedio de bajas del equipo: {promedio_bajas:.1f}")
+print("\n"+SEPARADOR+f"\nJugador mas joven: {jugador_mas_joven[0]} | Edad: {jugador_mas_joven[1]}"
+      "\n"+SEPARADOR+f"\nJugador con mas bajas: {jugador_mas_bajas[0]} | Bajas: {jugador_mas_bajas[2]}"
+      "\n"+SEPARADOR+f"\nJugador con menos muertes: {jugador_menos_bajas[0]} | Muertes: {jugador_menos_bajas[3]}"
+      "\n"+SEPARADOR+f"\nPromedio de bajas del equipo: {promedio_bajas:.1f}")

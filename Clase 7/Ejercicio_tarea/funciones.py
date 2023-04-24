@@ -179,3 +179,4 @@ def menu_temperatura()->None:
 
         input("\nPresione Enter para continuar...")
 
+
