@@ -1,4 +1,3 @@
-from data import *
 import os
 import platform
 
@@ -21,13 +20,17 @@ def generar_separador(patron: str, largo: int)->int|None:
     No retorna nada o -1 (int) en caso de error.
     '''
 
-    if len(patron) > 0 and len(patron) < 3 and isinstance(largo, int) and largo > 0 or largo < 236:
+    if len(patron) == 1 and isinstance(largo, int) and largo > 0 or largo < 236:
         print(patron * largo)
     else:
         return -1
     
 def stark_normalizar_dato(lista: list)->None:
     '''
+    Recorre la lista de diccionarios y recorre las key del diccionario, verifica que las key no sean de tipo
+    int o float si el contenido de esa key es un dígito lo casteo a int o si contiene un "." lo casteo a float.
+    Recibe la lista de diccionarios.
+    No retorna nada, solo printea "Datos normalizados" si se casteo alguna key.
     '''
     if isinstance(lista, list) and lista and all(isinstance(elemento, dict) and elemento for elemento in lista):
     
@@ -48,6 +51,9 @@ def stark_normalizar_dato(lista: list)->None:
         
 def obtener_nombre(diccionario: dict)->str:
     '''
+    Formatea un string con un nombre.
+    Recibe un diccionario.
+    Retorna un str.
     '''
     if isinstance(diccionario, dict) and diccionario:
         
@@ -55,11 +61,17 @@ def obtener_nombre(diccionario: dict)->str:
 
 def imprimir_dato(dato: str)->None:
     '''
+    Imprime un dato en pantalla.
+    Recibe un str.
+    No retorna nada.
     '''
     print(dato)
 
 def stark_imprimir_nombres_heroes(lista: list)->None|int:
     '''
+    Recorre la lista de diccionarios e imprime el nombre de los heroes llamando a "imprimir_dato" y "obtener_nombre".
+    Recibe la lista de diccionarios.
+    No retorna nada o -1 (int) en caso de que no se cumpla la condición del if.
     '''
     if isinstance(lista, list) and lista and all(isinstance(elemento, dict) and elemento for elemento in lista):
 
@@ -69,16 +81,23 @@ def stark_imprimir_nombres_heroes(lista: list)->None|int:
         generar_separador("=", 40)
     else:
         return -1
-    
-def obtener_nombre_y_dato(diccionario: dict, key: str)->str|int:
+
+def obtener_nombre_y_dato(diccionario: dict, key: str)->str:
     '''
+    Formatea un nombre y un dato.
+    Recibe un diccionario y la key del diccionario que representa el dato que se formateara.
+    Retorna un str.
     '''
     if isinstance(diccionario, dict) and diccionario and isinstance(key, str) and key:
 
         return f"Nombre: {diccionario['nombre']} | {key.capitalize()}: {diccionario[key]}"
 
-def stark_imprimir_nombres_alturas(lista: list):
+def stark_imprimir_nombres_alturas(lista: list)->None|int:
     '''
+    Recorre la lista de diccionarios y printea los nombres y als alturas de los heroes usando la función
+    "obtener_nombre_y_dato".
+    Recibe la lista de diccionarios.
+    No retorna nada o -1 (int) en caso de que no se cumpla la condición del if.
     '''
     if isinstance(lista, list) and lista and all(isinstance(elemento, dict) and elemento for elemento in lista):
 
@@ -91,6 +110,9 @@ def stark_imprimir_nombres_alturas(lista: list):
 
 def calcular_max(lista: list, key: str)->list:
     '''
+    Recorre la lista de diccionarios y calcula el héroe máximo según la key que se le pase.
+    Recibe la lista de diccionarios y la key que se va a calcular.
+    Retorna una lista de diccionarios con los héroes que tengan el máximo según la key.
     '''
     if(isinstance(lista, list) and lista and all(isinstance(elemento, dict) and elemento for elemento in lista)
        and isinstance(key, str) and key):
@@ -112,6 +134,9 @@ def calcular_max(lista: list, key: str)->list:
 
 def calcular_min(lista: list, key: str)->list:
     '''
+    Recorre la lista de diccionarios y calcula el héroe mínimo según la key que se le pase.
+    Recibe la lista de diccionarios y la key que se va a calcular.
+    Retorna una lista de diccionarios con los héroes que tengan el mínimo según la key.
     '''
     if(isinstance(lista, list) and lista and all(isinstance(elemento, dict) and elemento for elemento in lista)
        and isinstance(key, str) and key):
@@ -133,6 +158,9 @@ def calcular_min(lista: list, key: str)->list:
 
 def calcular_max_min_dato(lista: list, tipo: str, key: str)->list:
     '''
+    Calcula el máximo o mínimo de la lista llamando a las funciones "calcular_max", "calcular_min".
+    Recibe la lista de diccionarios, el tipo a calcular "máximo" o "mínimo" y la key que se va a calcular.
+    Retorna la lista que devuelven las funciones "calcular_max" o "calcular_min".
     '''
     if(isinstance(lista, list) and lista and all(isinstance(elemento, dict) and elemento for elemento in lista)
        and isinstance(tipo, str) and tipo and isinstance(key, str) and key):
@@ -146,20 +174,27 @@ def calcular_max_min_dato(lista: list, tipo: str, key: str)->list:
 
 def stark_calcular_imprimir_heroe(lista: list, tipo: str, key: str)->None|int:
     '''
+    Imprime por pantalla el heroe máximo o mínimo según el tipo que se le pase, llamando a las funciones
+    "imprimir_dato", "obtener_nombre_y_dato" y "calcular_max_min_dato".
+    Recibe la lista de diccionarios, el tipo "máximo" o "mínimo" y la key que se calculara.
+    No retorna nada o -1 (int) en caso de que no se cumpla la condición del if.
     '''
     if(isinstance(lista, list) and lista and all(isinstance(elemento, dict) and elemento for elemento in lista)
        and isinstance(tipo, str) and tipo and isinstance(key, str) and key):
         
         if tipo == "maximo":
-            imprimir_dato(obtener_nombre_y_dato(calcular_max_min_dato(lista_personajes, "maximo", key)[0], key))
+            imprimir_dato(obtener_nombre_y_dato(calcular_max_min_dato(lista, "maximo", key)[0], key))
         elif tipo == "minimo":
-            imprimir_dato(obtener_nombre_y_dato(calcular_max_min_dato(lista_personajes, "minimo", key)[0], key))
+            imprimir_dato(obtener_nombre_y_dato(calcular_max_min_dato(lista, "minimo", key)[0], key))
 
     else:
         return -1
 
 def sumar_dato_heroe(lista: list, key: str)->float:
     '''
+    Recorre la lista de diccionarios y suma los datos que se pasen por la key.
+    Recibe la lista de diccionarios y la key a calcular.
+    Retorna la suma de los datos de la lista (float).
     '''
     if(isinstance(lista, list) and lista and all(isinstance(elemento, dict) and elemento for elemento in lista)
        and isinstance(key, str) and key):
@@ -171,8 +206,11 @@ def sumar_dato_heroe(lista: list, key: str)->float:
 
         return suma_dato
     
-def dividir(dividendo: int, divisor: int)->float|int:
+def dividir(dividendo: int|float, divisor: int)->float|int:
     '''
+    Divide 2 números.
+    Recibe el dividendo que puede ser un int o un float y el divisor que e sun int.
+    Retorna la división de dos números (int o float) y devuelve el resultado (float o int).
     '''
     if isinstance(dividendo, (float, int)) and isinstance(divisor, int) and divisor != 0:
         
@@ -186,6 +224,9 @@ def dividir(dividendo: int, divisor: int)->float|int:
 
 def calcular_promedio(lista: list, key: str)->float|int:
     '''
+    Calcula el promedio de los datos de la lista llamando a las funciones "sumar_dato_heroe" y "dividir".
+    Recibe la lista de diccionarios y la key a calcular.
+    Retorna el promedio de los datos de la lista (int o float).
     '''
     if(isinstance(lista, list) and lista and all(isinstance(elemento, dict) and elemento for elemento in lista)
        and isinstance(key, str) and key): 
@@ -197,6 +238,9 @@ def calcular_promedio(lista: list, key: str)->float|int:
     
 def stark_calcular_imprimir_promedio_altura(lista: list)->None:
     '''
+    Calcula el promedio de la altura de los heroes y lo imprime en pantalla llamando a la función "imprimir_dato".
+    Recibe la lista de diccionarios.
+    No retorna nada.
     '''
     if isinstance(lista, list) and lista and all(isinstance(elemento, dict) and elemento for elemento in lista):
 
@@ -204,16 +248,22 @@ def stark_calcular_imprimir_promedio_altura(lista: list)->None:
 
         imprimir_dato("Altura promedio de los heroes: {:.2f}cm".format(altura_promedio))
 
-def imprimir_menu(mensaje)->None:
+def imprimir_menu(mensaje)->None|int:
     '''
+    Imprime un mensaje en pantalla.
+    Recibe un mensaje (str).
+    No retorna nada o -1 (int) en caso de que no se cumpla la condición del if.
     '''
     if isinstance(mensaje, str) and mensaje:
         imprimir_dato(mensaje)
     else:
         return -1
     
-def validar_entero(numero_str: str):
+def validar_entero(numero_str: str)->bool:
     '''
+    Valida que lo que recibe sea un numero conformado por dígitos.
+    Recibe un numero en str.
+    Retorna True o False (bool).
     '''
     if isinstance(numero_str, str) and numero_str.isdigit() and len(numero_str) == 1:
         retorno = True
@@ -222,8 +272,13 @@ def validar_entero(numero_str: str):
     
     return retorno
 
-def stark_menu_principal():
-    '''
+def stark_menu_principal()->int:
+    f'''
+    Imprime el menu de la app llamando a la función "imprimir_menu" y le pide al usuario que ingrese una opción
+    y la valida llamando a la función "validar_entero".
+    No recibe nada.
+    Retorna la opción que ingreso el usuario en int o -1 (int) en caso de que lo que haya ingresado el usuario no sea
+    un numero.
     '''
     mensaje = "\n       **Menu STARK INDUSTRIES**\n\n       Menu: \n\n1- Normalizar datos.\n"
     mensaje += "2- Imprimir nombre de los Superhéroes. \n3- Imprimir nombre y altura de los Superhéroes.\n"
@@ -242,8 +297,12 @@ def stark_menu_principal():
 
     return retorno
 
-def stark_marvel_app(lista: list):
+def stark_marvel_app(lista: list)->None:
     '''
+    Función principal que se encargara de ejecutar nuestra app, llamando a las diferentes funciones según 
+    la opción ingresada.
+    Recibe la lista de diccionarios.
+    No retorna nada.
     '''
     flag_primer_ingreso = False
     while True:
@@ -303,7 +362,4 @@ def stark_marvel_app(lista: list):
                 print("\nError! Ingrese una opción valida.")
 
         input("\nPresione Enter para continuar...")
-
- 
-
 
